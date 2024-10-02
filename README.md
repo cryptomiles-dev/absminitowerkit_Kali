@@ -5,6 +5,41 @@
 # absminitowerkit
 ABS mini tower kit 's driver and installation script.
 
+### When to use this  
+If for some reason you wish to install a custom Kali OS or use the Raspberry Pi OS you will need this to install the drivers for the OLED display.  
+**NOTE** If you use the recovery image provided with the MiniTower you **do not** need this.   
+
+### Verify the MiniTower's OLED display is being detected  
+`i2cdetect -y 1`  
+If you see `3c` in one of the colums then the OLED display is being detected correctly.   
+If you **do not** see a `3c` in one of the colums then the OLED display **is not** being detected.  
+If the display **is not** detected:  
+
+1. Verfiy the `i2c.conf` file has the is correct.
+`sudo nano /etc/modules-load.d/i2c.conf`  
+Verfiy it contains the following:  
+```
+i2c-bcm2835
+i2c-dev
+```
+2. Verify the `/boot/config.txt` file is correct:
+`sudo nano /boot/config.txt`
+Uncomment and add the following to `/boot/config.txt`
+The following should be present and uncommented:
+```
+dtparam=i2c_arm=on
+dtparam=i2s=on
+dtparam=spi=on
+dtparam=i2c1=on
+```
+3. Verify your user is a member of the `gpio` and `i2c` groups
+`groups <username>`
+For example `groups kali`
+check the groups for `gpio` and `i2c`   if they are not present
+`sudo usermod -aG gpio,i2c kali`
+4. Recheck `i2cdetect`
+`i2cdetect -y 1`  
+
 ### Install the driver 
 * Open a terminal and make sure your Raspberry Pi has internet access.  
 
