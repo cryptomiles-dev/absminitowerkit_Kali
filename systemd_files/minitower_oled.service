@@ -6,7 +6,7 @@ StartLimitBurst=5
 
 [Service]
 Type=simple
-ExecStart=sudo /bin/bash -c '/usr/bin/python3 /usr/local/minitower/sysinfo.py'
+ExecStart=sudo /bin/bash -c '/usr/bin/python3 /usr/local/minitower/sysinfo-net-w-temp.py'
 RemainAfterExit=yes
 Restart=always
 
