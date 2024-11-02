@@ -33,10 +33,11 @@ dtparam=spi=on
 dtparam=i2c1=on
 ```
 3. Verify your user is a member of the `gpio` and `i2c` groups
-`groups <username>`
-For example `groups kali`
+`groups <username>`  
+For example `groups kali` 
 check the groups for `gpio` and `i2c`   if they are not present
-`sudo usermod -aG gpio,i2c kali`
+`sudo groupadd gpio`  
+`sudo usermod -aG gpio,i2c kali`  
 4. Recheck `i2cdetect`
 `i2cdetect -y 1`  
 
